@@ -9,13 +9,15 @@ const App = () => {
   if (!localStorage.getItem('username')) return <LoginForm />;
 
   return (
-		<ChatEngine
-			height='100vh'
-			userName='Root'
-			userSecret='1234'
-			projectID='6875f6d3-9ab5-460e-a15e-8a4a68e773b5'
-		/>
-	);
+    <ChatEngine
+      height="100vh"
+      projectID={projectID}
+      userName={localStorage.getItem('username')}
+      userSecret={localStorage.getItem('password')}
+      renderChatFeed={(chatAppProps) => <ChatFeed {...chatAppProps} />}
+      onNewMessage={() => new Audio('https://chat-engine-assets.s3.amazonaws.com/click.mp3').play()}
+    />
+  );
 };
 
 export default App; 
